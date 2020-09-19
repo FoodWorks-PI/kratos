@@ -66,6 +66,7 @@
           "enum": [
             "github",
             "generic",
+            "facebook",
             "google",
             "microsoft"
           ],

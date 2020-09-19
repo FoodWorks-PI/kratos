@@ -5,7 +5,8 @@ services:
   kratos-selfservice-ui-node:
     environment:
       - PORT=4435
-      - KRATOS_BROWSER_URL=http://127.0.0.1:4455/.ory/kratos/public
+      - KRATOS_BROWSER_URL=https://127.0.0.1:4455/.ory/kratos/public
+      - BASE_URL=https://127.0.0.1:4455
       - JWKS_URL=http://oathkeeper:4456/.well-known/jwks.json
       - SECURITY_MODE=jwks
 

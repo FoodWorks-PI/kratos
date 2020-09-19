@@ -71,6 +71,8 @@ func (c ConfigurationCollection) Provider(id string, public *url.URL) (Provider,
 			switch p.Provider {
 			case "generic":
 				return NewProviderGenericOIDC(&p, public), nil
+			case "facebook":
+				return NewProviderFacebook(&p, public), nil
 			case "google":
 				return NewProviderGoogle(&p, public), nil
 			case "github":
