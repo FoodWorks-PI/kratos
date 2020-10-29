@@ -4,15 +4,16 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/ory/herodot"
-	"github.com/ory/x/stringsx"
-	"github.com/pkg/errors"
-	"golang.org/x/oauth2"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
 	"path"
+
+	"github.com/ory/herodot"
+	"github.com/ory/x/stringsx"
+	"github.com/pkg/errors"
+	"golang.org/x/oauth2"
 )
 
 const (
@@ -85,7 +86,7 @@ func (f *ProviderFacebook) Claims(ctx context.Context, exchange *oauth2.Token) (
 		return nil, errors.WithStack(herodot.ErrInternalServerError.WithReasonf("%s", err))
 	}
 
-	u.Path = path.Join(u.Path, "/m")
+	u.Path = path.Join(u.Path, "/me")
 	q := u.Query()
 	q.Set("fields", "id,name,email")
 	u.RawQuery = q.Encode()
@@ -119,11 +120,11 @@ func (f *ProviderFacebook) Claims(ctx context.Context, exchange *oauth2.Token) (
 		return nil, errors.WithStack(herodot.ErrInternalServerError.WithReasonf("%s", err))
 	}
 	/*
-	if err := json.NewDecoder(resp.Body).Decode(&claims); err != nil {
-		log.Println("Failed decoding")
-		return nil, errors.WithStack(herodot.ErrInternalServerError.WithReasonf("%s", err))
-	}
-	 */
+		if err := json.NewDecoder(resp.Body).Decode(&claims); err != nil {
+			log.Println("Failed decoding")
+			return nil, errors.WithStack(herodot.ErrInternalServerError.WithReasonf("%s", err))
+		}
+	*/
 	log.Print(claims)
 	return &claims, nil
 }
